@@ -3,5 +3,10 @@
 - name: basic setup for a monitor with k0s
   hosts: all
   become: yes
+  tasks:
+    - name: add /usr/sbin to PATH
+      copy:
+        dest: /etc/profile.d/custom-path.sh
+        content: "PATH=$PATH:/usr/sbin"
   roles:
-    - { role: tekton }
+    - tekton 
